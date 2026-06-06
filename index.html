@@ -32,26 +32,48 @@
             background-color: #0d0d0d;
         }
 
-        /* Слой для фоновых картинок с плавным переходом */
+        /* Общие стили для слоев картинок */
         .bg-layer {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 1;
             background-position: center center;
             background-size: cover;
             background-repeat: no-repeat;
-            /* Плавность затухания и появления в 1.5 секунды */
-            transition: background-image 1.5s ease-in-out; 
+            /* Анимация проявления/затухания за 2 секунды */
+            transition: opacity 2s ease-in-out; 
+        }
+
+        /* Первый слой (активный по умолчанию) */
+        #bg1 {
+            z-index: 1;
+            opacity: 1;
+        }
+
+        /* Второй слой (скрытый по умолчанию) */
+        #bg2 {
+            z-index: 2;
+            opacity: 0;
+        }
+
+        /* Затемняющий фильтр поверх всех картинок, чтобы текст читался */
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.85));
+            z-index: 3;
         }
 
         /* Контейнер с текстом и кнопками */
         .content {
             max-width: 800px;
             padding: 20px;
-            z-index: 2; /* Текст строго поверх фона */
+            z-index: 4; /* Текст строго поверх всех фильтров */
         }
 
         /* Военный шеврон/плашка сверху */
@@ -151,8 +173,10 @@
 <body>
 
     <section class="hero-section">
-        <!-- Отдельный слой для фонов с наложенным затемнением -->
-        <div class="bg-layer" id="bgLayer"></div>
+        <div class="bg-layer" id="bg1"></div>
+        <div class="bg-layer" id="bg2"></div>
+        
+        <div class="overlay"></div>
 
         <div class="content">
             <div class="badge">Arma 3 Milsim Project</div>
@@ -166,32 +190,45 @@
         </div>
     </section>
 
-    <!-- Скрипт для автоматической смены картинок -->
     <script>
-        // Список твоих картинок. Сюда потом можно дописывать 'background3.jpg' и т.д.
+        // Твои файлы картинок из репозитория
         const images = [
             'background.jpg',
             'background2.jpg'
         ];
 
         let currentIndex = 0;
-        const bgLayer = document.getElementById('bgLayer');
+        const bg1 = document.getElementById('bg1');
+        const bg2 = document.getElementById('bg2');
+        
+        // Переменная, которая следит, какой слой сейчас сверху
+        let isFirstLayerActive = true;
+
+        // Ставим самую первую картинку сразу на первый слой
+        bg1.style.backgroundImage = `url('${images[0]}')`;
 
         function changeBackground() {
-            // Берем текущую картинку из списка
-            const nextImage = images[currentIndex];
-            
-            // Меняем фон и сохраняем наше брутальное затемнение поверх неё
-            bgLayer.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.85)), url('${nextImage}')`;
-            
-            // Переходим к следующему индексу, а если дошли до конца — возвращаемся к первой
+            // Переходим к индексу следующей картинки
             currentIndex = (currentIndex + 1) % images.length;
+            const nextImage = images[currentIndex];
+
+            if (isFirstLayerActive) {
+                // Если активен первый слой, то плавно переключаемся на второй
+                bg2.style.backgroundImage = `url('${nextImage}')`;
+                bg2.style.opacity = 1;
+                bg1.style.opacity = 0;
+            } else {
+                // Если активен второй слой, плавно возвращаемся на первый
+                bg1.style.backgroundImage = `url('${nextImage}')`;
+                bg1.style.opacity = 1;
+                bg2.style.opacity = 0;
+            }
+
+            // Меняем флаг активности слоя на противоположный
+            isFirstLayerActive = !isFirstLayerActive;
         }
 
-        // Запускаем первую картинку сразу при загрузке
-        changeBackground();
-
-        // Ставим таймер переключения: 5000 миллисекунд = 5 секунд
+        // Запускаем таймер переключения каждые 5 секунд (5000 миллисекунд)
         setInterval(changeBackground, 5000);
     </script>
 

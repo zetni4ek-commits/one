@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Битва за Африку | Arma 3 Milsim</title>
+    <style>
+        /* Общие настройки для всей страницы */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body, html {
+            height: 100%;
+            background-color: #0d0d0d;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* Задний фон с эффектом затемнения */
+        .hero-section {
+            position: relative;
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            /* В качестве фона используется атмосферная милитари-картинка */
+            background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.85)), 
+                        url('https://images.unsplash.com/photo-1590055531615-f16d36fed8f1?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+        }
+
+        /* Контейнер с текстом и кнопками */
+        .content {
+            max-width: 800px;
+            padding: 20px;
+            z-index: 2;
+        }
+
+        /* Шеврон / Иконка сверху (временная замена логотипу) */
+        .badge {
+            display: inline-block;
+            padding: 6px 16px;
+            background-color: #d35400; /* Оранжево-песочный военный оттенок */
+            color: #000;
+            font-weight: 800;
+            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            border-radius: 3px;
+        }
+
+        /* Главный заголовок */
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+        }
+
+        /* Подзаголовок */
+        .subtitle {
+            font-size: 1.5rem;
+            color: #bdc3c7;
+            margin-bottom: 40px;
+            font-weight: 400;
+            letter-spacing: 1px;
+        }
+
+        /* Блок с кнопками */
+        .btn-container {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Общие стили для кнопок */
+        .btn {
+            display: inline-block;
+            padding: 16px 32px;
+            font-size: 16px;
+            font-weight: 700;
+            text-transform: uppercase;
+            text-decoration: none;
+            letter-spacing: 1px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        /* Кнопка Дискорда */
+        .btn-discord {
+            background-color: #5865F2; /* Фирменный цвет Discord */
+            color: #fff;
+            border: 2px solid #5865F2;
+        }
+
+        .btn-discord:hover {
+            background-color: #4351df;
+            border-color: #4351df;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(88, 101, 242, 0.3);
+        }
+
+        /* Кнопка для сборки модов */
+        .btn-modpack {
+            background-color: transparent;
+            color: #e67e22;
+            border: 2px solid #e67e22;
+        }
+
+        .btn-modpack:hover {
+            background-color: #e67e22;
+            color: #000;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(230, 126, 34, 0.3);
+        }
+
+        /* Адаптивность для мобилок */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.2rem; }
+            .subtitle { font-size: 1.1rem; }
+            .btn { width: 100%; text-align: center; }
+            .btn-container { flex-direction: column; gap: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <section class="hero-section">
+        <div class="content">
+            <div class="badge">Arma 3 Milsim Project</div>
+            <h1>Битва за Африку</h1>
+            <p class="subtitle">Тактический симулятор операций ЧВК «Вагнер» в условиях африканского театра военных действий.</p>
+            
+            <div class="btn-container">
+                <!-- Замени '#' внутри href=" " на реальные ссылки, когда они будут готовы -->
+                <a href="#" target="_blank" class="btn btn-discord">Присоединиться к Discord</a>
+                <a href="#" target="_blank" class="btn btn-modpack">Скачать сборку модов</a>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>

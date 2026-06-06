@@ -20,7 +20,7 @@
             overflow-x: hidden;
         }
 
-        /* Задний фон со скриншотом и сильным атмосферным затемнением */
+        /* Задний фон с фиксацией размеров */
         .hero-section {
             position: relative;
             height: 100vh;
@@ -29,23 +29,36 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            /* Здесь мы подключаем твою картинку background.jpg */
-            background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.85)), 
-                        url('background.jpg') no-repeat center center/cover;
+            background-color: #0d0d0d;
+        }
+
+        /* Слой для фоновых картинок с плавным переходом */
+        .bg-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            background-position: center center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            /* Плавность затухания и появления в 1.5 секунды */
+            transition: background-image 1.5s ease-in-out; 
         }
 
         /* Контейнер с текстом и кнопками */
         .content {
             max-width: 800px;
             padding: 20px;
-            z-index: 2;
+            z-index: 2; /* Текст строго поверх фона */
         }
 
         /* Военный шеврон/плашка сверху */
         .badge {
             display: inline-block;
             padding: 6px 16px;
-            background-color: #d35400; /* Оранжево-песочный оттенок */
+            background-color: #d35400; 
             color: #000;
             font-weight: 800;
             text-transform: uppercase;
@@ -126,7 +139,7 @@
             box-shadow: 0 10px 20px rgba(230, 126, 34, 0.4);
         }
 
-        /* Адаптивность для мобильных устройств */
+        /* Адаптивность для мобилок */
         @media (max-width: 768px) {
             h1 { font-size: 2.2rem; }
             .subtitle { font-size: 1.1rem; }
@@ -138,6 +151,9 @@
 <body>
 
     <section class="hero-section">
+        <!-- Отдельный слой для фонов с наложенным затемнением -->
+        <div class="bg-layer" id="bgLayer"></div>
+
         <div class="content">
             <div class="badge">Arma 3 Milsim Project</div>
             <h1>Битва за Африку</h1>
@@ -149,6 +165,35 @@
             </div>
         </div>
     </section>
+
+    <!-- Скрипт для автоматической смены картинок -->
+    <script>
+        // Список твоих картинок. Сюда потом можно дописывать 'background3.jpg' и т.д.
+        const images = [
+            'background.jpg',
+            'background2.jpg'
+        ];
+
+        let currentIndex = 0;
+        const bgLayer = document.getElementById('bgLayer');
+
+        function changeBackground() {
+            // Берем текущую картинку из списка
+            const nextImage = images[currentIndex];
+            
+            // Меняем фон и сохраняем наше брутальное затемнение поверх неё
+            bgLayer.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.85)), url('${nextImage}')`;
+            
+            // Переходим к следующему индексу, а если дошли до конца — возвращаемся к первой
+            currentIndex = (currentIndex + 1) % images.length;
+        }
+
+        // Запускаем первую картинку сразу при загрузке
+        changeBackground();
+
+        // Ставим таймер переключения: 5000 миллисекунд = 5 секунд
+        setInterval(changeBackground, 5000);
+    </script>
 
 </body>
 </html>

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Битва за Африку | Arma 3 Milsim</title>
     <style>
-        /* Общие настройки для всей страницы */
+        /* Общие настройки */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -20,7 +20,7 @@
             overflow-x: hidden;
         }
 
-        /* Задний фон с эффектом затемнения */
+        /* Задний фон со скриншотом и сильным атмосферным затемнением */
         .hero-section {
             position: relative;
             height: 100vh;
@@ -29,9 +29,9 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            /* В качестве фона используется атмосферная милитари-картинка */
+            /* Здесь мы подключаем твою картинку background.jpg */
             background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.85)), 
-                        url('https://images.unsplash.com/photo-1590055531615-f16d36fed8f1?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+                        url('background.jpg') no-repeat center center/cover;
         }
 
         /* Контейнер с текстом и кнопками */
@@ -41,11 +41,11 @@
             z-index: 2;
         }
 
-        /* Шеврон / Иконка сверху (временная замена логотипу) */
+        /* Военный шеврон/плашка сверху */
         .badge {
             display: inline-block;
             padding: 6px 16px;
-            background-color: #d35400; /* Оранжево-песочный военный оттенок */
+            background-color: #d35400; /* Оранжево-песочный оттенок */
             color: #000;
             font-weight: 800;
             text-transform: uppercase;
@@ -63,7 +63,7 @@
             letter-spacing: 3px;
             margin-bottom: 10px;
             color: #ffffff;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.9);
         }
 
         /* Подзаголовок */
@@ -73,6 +73,7 @@
             margin-bottom: 40px;
             font-weight: 400;
             letter-spacing: 1px;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.8);
         }
 
         /* Блок с кнопками */
@@ -99,7 +100,7 @@
 
         /* Кнопка Дискорда */
         .btn-discord {
-            background-color: #5865F2; /* Фирменный цвет Discord */
+            background-color: #5865F2;
             color: #fff;
             border: 2px solid #5865F2;
         }
@@ -108,7 +109,7 @@
             background-color: #4351df;
             border-color: #4351df;
             transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(88, 101, 242, 0.3);
+            box-shadow: 0 10px 20px rgba(88, 101, 242, 0.4);
         }
 
         /* Кнопка для сборки модов */
@@ -122,10 +123,10 @@
             background-color: #e67e22;
             color: #000;
             transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(230, 126, 34, 0.3);
+            box-shadow: 0 10px 20px rgba(230, 126, 34, 0.4);
         }
 
-        /* Адаптивность для мобилок */
+        /* Адаптивность для мобильных устройств */
         @media (max-width: 768px) {
             h1 { font-size: 2.2rem; }
             .subtitle { font-size: 1.1rem; }
@@ -143,7 +144,6 @@
             <p class="subtitle">Тактический симулятор операций ЧВК «Вагнер» в условиях африканского театра военных действий.</p>
             
             <div class="btn-container">
-                <!-- Замени '#' внутри href=" " на реальные ссылки, когда они будут готовы -->
                 <a href="#" target="_blank" class="btn btn-discord">Присоединиться к Discord</a>
                 <a href="#" target="_blank" class="btn btn-modpack">Скачать сборку модов</a>
             </div>
